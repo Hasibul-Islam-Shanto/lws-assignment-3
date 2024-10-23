@@ -64,7 +64,7 @@ const Modal = () => {
         <div className="w-full max-w-md rounded-lg bg-gray-800 shadow-xl">
           <div className="p-6">
             <h2 className="mb-6 text-2xl font-bold text-green-400">
-              Create Task
+              {alreadyExistTask ? "Update Task" : "Create Task"}
             </h2>
             <form>
               <div className="mb-4">
