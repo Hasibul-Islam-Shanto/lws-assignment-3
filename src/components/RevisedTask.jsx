@@ -1,32 +1,46 @@
 import sortSvg from "../assets/sort.svg";
-import deleteSvg from "../assets/delete.svg";
-import editSvg from "../assets/edit.svg";
+import { useContext, useState } from "react";
+import { TaskContext } from "../context/TaskProvider";
+import Card from "./Card";
 
 const RevisedTask = () => {
+  const { tasks } = useContext(TaskContext);
+  const [isSort, setIsSort] = useState(false);
+
+  const revisedTasks = tasks
+    ?.filter((item) => item.taskType === "REVISED")
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  const revisedTasksForLowerToHigherDate = tasks
+    ?.filter((item) => item.taskType === "REVISED")
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  const taskContent = isSort ? revisedTasksForLowerToHigherDate : revisedTasks;
+
   return (
     <>
       <div className="mb-4 w-full px-2 sm:w-1/2 md:w-1/4">
         <div className="rounded-lg bg-rose-500 p-4">
           <div className="mb-2 flex items-center justify-between">
-            <h3 className="text-lg font-semibold">Revise (1)</h3>
-            <img src={sortSvg} alt="sort-icon" className="h-5 w-5" />
+            <h3 className="text-lg font-semibold">
+              Revise ({(revisedTasks && revisedTasks?.length) || 0})
+            </h3>
+            <img
+              src={sortSvg}
+              alt="sort-icon"
+              className="h-5 w-5 cursor-pointer"
+              onClick={() => setIsSort(!isSort)}
+            />
           </div>
-          <div className="mb-4 rounded-lg bg-gray-800 p-4">
-            <div className="flex justify-between">
-              <h4 className="mb-2 font-semibold text-rose-500">
-                Content Writer
-              </h4>
-              <div className="flex gap-2">
-                <img src={deleteSvg} alt="delete-icon" className="h-4 w-4" />
-                <img src={editSvg} alt="edit-icon" className="h-4 w-4" />
-              </div>
-            </div>
-            <p className="mb-2 text-sm text-zinc-200">
-              Make Promotional Ads for Instagram fastos
-            </p>
 
-            <p className="mt-6 text-xs text-zinc-400">February 20, 2024</p>
-          </div>
+          {taskContent && taskContent.length === 0 && (
+            <p className="mb-4 rounded-lg bg-gray-800 p-4">
+              No task on revised.
+            </p>
+          )}
+
+          {taskContent &&
+            taskContent?.map((item) => <Card key={item.id} task={item} />)}
         </div>
       </div>
     </>

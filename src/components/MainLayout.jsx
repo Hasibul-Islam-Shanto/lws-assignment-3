@@ -5,8 +5,12 @@ import OnProgressTask from "./OnProgressTask";
 import RevisedTask from "./RevisedTask";
 import Sidebar from "./Sidebar";
 import ToDoTask from "./ToDoTask";
+import { TaskContext } from "../context/TaskProvider";
+import { useContext } from "react";
+import Modal from "./Modal";
 
 const MainLayout = () => {
+  const { isModalOpen } = useContext(TaskContext);
   return (
     <>
       <div className="w-full min-h-screen bg-gray-900 text-white">
@@ -26,6 +30,7 @@ const MainLayout = () => {
           </main>
         </div>
       </div>
+      {isModalOpen && <Modal />}
     </>
   );
 };
