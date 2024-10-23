@@ -5,7 +5,6 @@ import { TaskContext } from "../context/TaskProvider";
 
 const ToDoTask = () => {
   const { tasks } = useContext(TaskContext);
-
   const [isSort, setIsSort] = useState(false);
 
   const todoTasks = tasks
@@ -36,7 +35,7 @@ const ToDoTask = () => {
 
           {todoTasks && todoTasks.length === 0 && (
             <p className="mb-4 rounded-lg bg-gray-800 p-4">
-              No todo available.
+              Task List is empty!
             </p>
           )}
 

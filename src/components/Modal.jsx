@@ -5,7 +5,7 @@ import { getNextId } from "../helper/helper";
 const Modal = () => {
   const { setIsModalOpen, tasks, task, setTask, dispatch, resetTaskField } =
     useContext(TaskContext);
-  console.log("🚀 ~ Modal ~ tasks:", task);
+
   const handleChange = (event) => {
     setTask({
       ...task,

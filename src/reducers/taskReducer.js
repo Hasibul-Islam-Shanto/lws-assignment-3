@@ -53,7 +53,7 @@ const taskReducer = (state, action) => {
       };
     }
     default:
-      return state.allTasks;
+      return { tasks: state.tasks, allTasks: state.allTasks };
   }
 };
 export default taskReducer;

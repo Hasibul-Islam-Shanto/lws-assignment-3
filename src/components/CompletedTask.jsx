@@ -37,7 +37,7 @@ const CompletedTask = () => {
 
           {taskContent && taskContent.length === 0 && (
             <p className="mb-4 rounded-lg bg-gray-800 p-4">
-              No task completed.
+              Task List is empty!
             </p>
           )}
 

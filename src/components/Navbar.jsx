@@ -15,17 +15,14 @@ const Navbar = () => {
         type: "search",
         query: "",
       });
-    }
-  };
-
-  const handleSearch = (event) => {
-    if (event.key === "Enter") {
+    } else {
       dispatch({
         type: "search",
         query: searchText,
       });
     }
   };
+
   return (
     <>
       <header className="flex items-center justify-between bg-gray-800 p-4">
@@ -38,7 +35,6 @@ const Navbar = () => {
             placeholder="Search here"
             value={searchText}
             onChange={handleChange}
-            onKeyDown={handleSearch}
             className="w-full max-w-xl rounded-full bg-gray-700 px-4 py-2 text-white focus:outline-none"
           />
         </div>
